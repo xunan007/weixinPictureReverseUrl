@@ -6,14 +6,9 @@ app.use("/static", express.static("public"));
 
 app.get("/getwxImg", (req, res) => {
     var url = req.url.substring(req.url.indexOf("param=") + 6);
-    console.log(url);
     res.writeHead(200, {
         'Content-Type': 'image/*'
     });
-    if (!url) {
-        res.send("");
-        return false;
-    }
     superagent.get(url)
         .set('Referer', '')
         .set("User-Agent",
